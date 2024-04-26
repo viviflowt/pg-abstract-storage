@@ -12,3 +12,5 @@ rm -rf pnmp-lock.yaml &>/dev/null || true
 # pnpm run dev
 
 pnpm install
+
+# https://docs.parcelvoy.com/
