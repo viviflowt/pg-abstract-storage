@@ -2,6 +2,8 @@ import dataSource from './data-source'
 
 const main = async () => {
   await dataSource.initialize()
+
+  await dataSource.destroy()
 }
 
 main()
@@ -9,7 +11,7 @@ main()
     console.error(error)
     process.exit(1)
   })
-  .finally(async () => {
-    await dataSource.destroy()
+  .finally(() => {
+    console.log('Done!')
     process.exit(0)
   })

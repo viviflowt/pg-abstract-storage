@@ -3,7 +3,7 @@ import {
   EventSubscriber,
   InsertEvent
 } from 'typeorm'
-import { User } from '../entities/user.entity'
+import { User } from '../entities'
 
 @EventSubscriber()
 export class UserSubscriber implements EntitySubscriberInterface<User> {

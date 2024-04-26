@@ -16,7 +16,8 @@ const dataSource = new DataSource({
   synchronize: true,
   logging: ['error', 'warn', 'query'],
   logger: 'advanced-console',
-  installExtensions: true
+  installExtensions: true,
+  uuidExtension: 'uuid-ossp'
 })
 
 export default dataSource
