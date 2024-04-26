@@ -1,29 +1,29 @@
 import {
-  BaseEntity,
-  BeforeInsert,
-  CreateDateColumn,
-  DeleteDateColumn,
-  PrimaryColumn,
-  UpdateDateColumn
+    BaseEntity,
+    BeforeInsert,
+    CreateDateColumn,
+    DeleteDateColumn,
+    PrimaryColumn,
+    UpdateDateColumn
 } from 'typeorm'
 
 import { createId } from '@paralleldrive/cuid2'
 
 export abstract class AbstractEntity extends BaseEntity {
-  @PrimaryColumn({ update: false, type: 'varchar' })
-  id: string
+    @PrimaryColumn({ update: false, type: 'varchar' })
+    id: string
 
-  @CreateDateColumn({ update: false })
-  createdAt: Date
+    @CreateDateColumn({ update: false })
+    createdAt: Date
 
-  @UpdateDateColumn()
-  updatedAt: Date
+    @UpdateDateColumn()
+    updatedAt: Date
 
-  @DeleteDateColumn({ select: false })
-  deletedAt?: Date
+    @DeleteDateColumn({ select: false })
+    deletedAt?: Date
 
-  @BeforeInsert()
-  setId() {
-    this.id = createId()
-  }
+    @BeforeInsert()
+    setId() {
+        this.id = createId()
+    }
 }

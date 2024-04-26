@@ -5,7 +5,7 @@ module.exports = {
         tsconfigRootDir: __dirname,
         sourceType: 'module'
     },
-    plugins: ['@typescript-eslint/eslint-plugin', 'jest-extended'],
+    plugins: ['@typescript-eslint/eslint-plugin'],
     extends: [
         'plugin:@typescript-eslint/recommended',
         'plugin:prettier/recommended'
@@ -17,8 +17,6 @@ module.exports = {
     },
     ignorePatterns: ['node_modules', '.eslintrc.js'],
     rules: {
-        'jest-extended/prefer-to-be-true': 'warn',
-        'jest-extended/prefer-to-be-false': 'error',
         '@typescript-eslint/ban-ts-comment': 'off',
         '@typescript-eslint/ban-types': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
