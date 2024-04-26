@@ -1,8 +1,26 @@
 {
-  "$schema": "https://json.schemastore.org/nest-cli",
-  "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
-  "compilerOptions": {
-    "deleteOutDir": true
+    "$schema": "https://json.schemastore.org/nest-cli",
+    "collection": "@nestjs/schematics",
+    "sourceRoot": "src",
+    "compilerOptions": {
+      "deleteOutDir": true,
+      "assets": [
+        "public/**/*",
+        "src/**/*.json",
+        "src/**/*.yaml",
+        "src/**/*.yml",
+        "src/**/*.sql",
+        "src/**/*.hbs"
+      ],
+      "watchAssets": true,
+      "plugins": [
+        {
+          "name": "@nestjs/swagger",
+          "options": {
+            "classValidatorShim": true,
+            "dtoFileNameSuffix": [".dto.ts", ".entity.ts", ".view-entity.ts"]
+          }
+        }
+      ]
+    }
   }
-}
