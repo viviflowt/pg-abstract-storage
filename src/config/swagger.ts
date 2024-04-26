@@ -1,31 +1,6 @@
 import { INestApplication } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger'
-import { PUBLIC_RESOURCE } from '../common/constants'
-
-function applySecurityForNonPublicEndpoints(document: OpenAPIObject) {
-    const paths = document.paths
-    const security = [{ bearer: [] }]
-
-    for (const path in paths) {
-        for (const method in paths[path]) {
-            const pathMethod = paths[path][method]
-            const tags = pathMethod.tags ?? []
-            if (tags.includes(PUBLIC_RESOURCE)) {
-                delete pathMethod.security
-                document.paths[path][method].tags = document.paths[path][
-                    method
-                ].tags.filter((tag: string) => tag !== PUBLIC_RESOURCE)
-            } else {
-                document.paths[path][method].security = security
-            }
-        }
-    }
-
-    // fs.writeFileSync('swagger.json', JSON.stringify(document, null, 2))
-
-    return document
-}
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 export function setupSwagger(app: INestApplication): INestApplication {
     const configService = app.get(ConfigService)
@@ -50,7 +25,7 @@ export function setupSwagger(app: INestApplication): INestApplication {
     SwaggerModule.setup(
         configService.getOrThrow('swagger.url'),
         app,
-        applySecurityForNonPublicEndpoints(swaggerDocument),
+        swaggerDocument,
         configService.getOrThrow('swagger.swaggerOptions')
     )
 
